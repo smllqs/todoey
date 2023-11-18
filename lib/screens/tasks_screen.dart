@@ -34,6 +34,7 @@ class _TasksScreenState extends State<TasksScreen> {
                           isDone: false));
                       textEditingController.clear();
                     });
+                    Navigator.pop(context);
                   },
                   controller: textEditingController,
                 )),
@@ -67,7 +68,9 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  '${tasksList.length} tasks',
+                  tasksList.length == 1
+                      ? '${tasksList.length} task'
+                      : '${tasksList.length} tasks',
                   style: const TextStyle(color: Colors.white, fontSize: 18.0),
                 )
               ],

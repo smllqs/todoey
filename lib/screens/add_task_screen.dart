@@ -26,7 +26,7 @@ class AddTaskScreen extends StatelessWidget {
             TextField(
               autofocus: true,
               controller: controller,
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.center, 
             ),
             const SizedBox(
               height: 20.0,
