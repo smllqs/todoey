@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/controller/task_controller.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  const AddTaskScreen({super.key, this.onpress, required this.controller});
+  const AddTaskScreen({super.key, this.onpress});
+
   final void Function()? onpress;
-  final TextEditingController controller;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,8 +28,8 @@ class AddTaskScreen extends StatelessWidget {
             ),
             TextField(
               autofocus: true,
-              controller: controller,
-              textAlign: TextAlign.center, 
+              controller: Provider.of<TaskController>(context).controller,
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 20.0,

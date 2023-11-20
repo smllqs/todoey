@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todoey/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey/controller/task_controller.dart';
 import 'package:todoey/screens/add_task_screen.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 
@@ -11,7 +12,6 @@ class TasksScreen extends StatefulWidget {
 }
 
 class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasksList = [];
   TextEditingController textEditingController = TextEditingController();
 
   @override
@@ -26,17 +26,19 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskScreen(
-                  onpress: () {
-                    setState(() {
-                      tasksList.add(Task(
-                          name: textEditingController.value.text,
-                          isDone: false));
-                      textEditingController.clear();
-                    });
-                    Navigator.pop(context);
+                child: Consumer<TaskController>(
+                  builder: (context, taskController, child) {
+                    return AddTaskScreen(
+                      onpress: () {
+                        setState(() {
+                          taskController.addToTaskList(
+                              taskController.controller.value.text);
+                          taskController.controller.clear();
+                        });
+                        Navigator.pop(context);
+                      },
+                    );
                   },
-                  controller: textEditingController,
                 )),
           ),
         ),
@@ -68,9 +70,9 @@ class _TasksScreenState extends State<TasksScreen> {
                       fontWeight: FontWeight.w700),
                 ),
                 Text(
-                  tasksList.length == 1
-                      ? '${tasksList.length} task'
-                      : '${tasksList.length} tasks',
+                  Provider.of<TaskController>(context).taskCount == 1
+                      ? '${Provider.of<TaskController>(context).taskCount} task'
+                      : '${Provider.of<TaskController>(context).taskCount} tasks',
                   style: const TextStyle(color: Colors.white, fontSize: 18.0),
                 )
               ],
@@ -84,9 +86,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(20),
                       topRight: Radius.circular(20))),
-              child: TasksList(
-                tasks: tasksList,
-              ),
+              child: const TasksList(),
             ),
           )
         ],
