@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:todoey/widgets/custom_text.dart';
 import 'package:todoey/widgets/outlined_circle_avatar.dart';
 import 'package:todoey/constants.dart';
-import 'package:todoey/widgets/outlined_text_container.dart';
 import 'package:todoey/widgets/overview_task_tile.dart';
-import 'package:todoey/widgets/task_tile.dart';
 
 class TaskManagementScreen extends StatefulWidget {
   const TaskManagementScreen({super.key});
@@ -97,10 +95,16 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
               ),
               Expanded(
                   child: ListView(
-                children: const [
+                children: [
                   OverviewTaskTile(
                       task: 'Virtual Verse Application Design',
-                      priorityLevel: 'Medium Priority')
+                      priorityLevel: priorityLevel[2]!),
+                  OverviewTaskTile(
+                      task: 'Finish Task Management App',
+                      priorityLevel: priorityLevel[1]!),
+                  OverviewTaskTile(
+                      task: 'Finish Task Management App',
+                      priorityLevel: priorityLevel[1]!),
                 ],
               ))
             ],
