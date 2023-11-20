@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:cupertino_icons/cupertino_icons.dart';
+import 'package:todoey/widgets/outlined_circle_avatar.dart';
 
 class TaskManagementScreen extends StatefulWidget {
   const TaskManagementScreen({super.key});
@@ -17,31 +20,32 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: const Column(children: [
             Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  child: Icon(
-                    Icons.person,
-                    color: Color(0xff1b1b1b),
-                  ),
-                ),
+                OutlinedCircleAvatar(iconData: Icons.person),
                 SizedBox(
                   width: 20,
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Hello Somelele',
-                      style: TextStyle(color: Colors.white30, fontSize: 12),
-                    ),
-                    Text(
-                      'Good Morning!',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
-                    ),
-                  ],
-                )
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hello Somelele',
+                        style: TextStyle(color: Colors.white30, fontSize: 12),
+                      ),
+                      Text(
+                        'Good Morning!',
+                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      ),
+                    ],
+                  ),
+                ),
+                OutlinedCircleAvatar(iconData: CupertinoIcons.bell),
+                SizedBox(
+                  width: 10,
+                ),
+                OutlinedCircleAvatar(iconData: CupertinoIcons.square_grid_2x2)
               ],
             ),
             Row(),
