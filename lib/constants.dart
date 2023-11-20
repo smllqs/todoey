@@ -1,3 +1,11 @@
+import 'package:flutter/material.dart';
+
+const Map<int, String> priorityLevel = {
+  1: 'High Priority',
+  2: 'Medium Priority',
+  3: 'Low Priority'
+};
+
 const Map<int, String> daysOftheWeek = {
   1: 'Monday',
   2: 'Tuesday',
@@ -23,3 +31,10 @@ const Map<int, String> monthsOftheYear = {
   12: 'December',
 };
 final date = DateTime.now();
+
+final kOutlinedButtonStyle = ButtonStyle(
+    shape: MaterialStatePropertyAll<OutlinedBorder>(
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20))),
+    side: const MaterialStatePropertyAll<BorderSide>(
+        BorderSide(width: 1.0, color: Colors.white)),
+    foregroundColor: const MaterialStatePropertyAll<Color>(Colors.white));
