@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:todoey/widgets/outlined_circle_avatar.dart';
+import 'package:todoey/constants.dart';
 
 class TaskManagementScreen extends StatefulWidget {
   const TaskManagementScreen({super.key});
@@ -18,8 +18,9 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
       body: SafeArea(
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: const Column(children: [
-            Row(
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            const Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 OutlinedCircleAvatar(iconData: Icons.person),
@@ -34,9 +35,9 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                         'Hello Somelele',
                         style: TextStyle(color: Colors.white30, fontSize: 12),
                       ),
-                      Text(
-                        'Good Morning!',
-                        style: TextStyle(color: Colors.white, fontSize: 18),
+                      CustomText(
+                        text: 'Good Morning!',
+                        size: 18,
                       ),
                     ],
                   ),
@@ -48,10 +49,40 @@ class _TaskManagementScreenState extends State<TaskManagementScreen> {
                 OutlinedCircleAvatar(iconData: CupertinoIcons.square_grid_2x2)
               ],
             ),
-            Row(),
+            const SizedBox(height: 40),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                CustomText(
+                  text: '${monthsOftheYear[date.month]!}, ${date.year}',
+                  size: 25,
+                ),
+                const OutlinedCircleAvatar(iconData: CupertinoIcons.calendar),
+              ],
+            ),
+            CustomText(
+                text: '${date.day} ${daysOftheWeek[date.weekday]}', size: 35)
           ]),
         ),
       ),
+    );
+  }
+}
+
+class CustomText extends StatelessWidget {
+  const CustomText({
+    super.key,
+    required this.text,
+    required this.size,
+  });
+  final String text;
+  final double size;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(fontSize: size, color: Colors.white),
     );
   }
 }

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:todoey/controller/task_controller.dart';
 
 class TaskTile extends StatelessWidget {
   final String taskTitle;

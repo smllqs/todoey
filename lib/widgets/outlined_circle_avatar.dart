@@ -15,9 +15,11 @@ class OutlinedCircleAvatar extends StatelessWidget {
         ),
         border: Border.all(width: .8, color: Colors.white54),
       ),
-      child: Icon(
-        iconData,
-        color: Colors.white,
+      child: Center(
+        child: Icon(
+          iconData,
+          color: Colors.white,
+        ),
       ),
     );
   }
