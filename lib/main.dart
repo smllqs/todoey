@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:todoey/controller/task_controller.dart';
 import 'package:todoey/screens/add_new_task_screen.dart';
 import 'package:todoey/screens/task_management_screen.dart';
-import 'package:todoey/screens/tasks_screen.dart';
+// import 'package:todoey/screens/tasks_screen.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
@@ -15,9 +15,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AddNewTaskScreen(),
+      initialRoute: '/',
+      routes: {
+        TaskManagementScreen.id: (context) => const TaskManagementScreen(),
+        AddNewTaskScreen.id: (context) => const AddNewTaskScreen()
+      },
     );
   }
 }

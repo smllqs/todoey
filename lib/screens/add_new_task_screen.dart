@@ -10,6 +10,7 @@ enum PriorityLevel { low, medium, high }
 
 class AddNewTaskScreen extends StatefulWidget {
   const AddNewTaskScreen({super.key});
+  static const id = '/addNewTask';
 
   @override
   State<AddNewTaskScreen> createState() => _AddNewTaskScreenState();
@@ -23,19 +24,23 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
     return Scaffold(
       backgroundColor: const Color(0xff1b1b1b),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: const Color(0xff1b1b1b),
         elevation: 0,
-        title: const Row(
+        title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            OutlinedCircleAvatar(
-              iconData: Icons.arrow_back_ios_new_outlined,
-              color: Colors.white54,
+            GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: const OutlinedCircleAvatar(
+                iconData: Icons.arrow_back_ios_new_outlined,
+                color: Colors.white,
+              ),
             ),
-            CustomText(text: 'Add New Task', size: 18),
-            OutlinedCircleAvatar(
+            const CustomText(text: 'Add New Task', size: 18),
+            const OutlinedCircleAvatar(
               iconData: CupertinoIcons.ellipsis,
-              color: Colors.white54,
+              color: Colors.white,
             )
           ],
         ),
@@ -95,8 +100,8 @@ class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
                 height: 40,
               ),
               CustomText(
-                text: 'Enter Task',
-                size: 40,
+                text: 'Enter your task',
+                size: 35,
                 fontWeight: FontWeight.w200,
               ),
               SizedBox(

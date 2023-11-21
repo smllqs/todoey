@@ -17,7 +17,7 @@ class IntervalColumn extends StatelessWidget {
           color: Colors.grey,
         ),
         const CustomText(
-          text: '00',
+          text: '05',
           size: 17,
           color: Colors.grey,
         ),
@@ -33,7 +33,7 @@ class IntervalColumn extends StatelessWidget {
           color: Colors.grey,
         ),
         const CustomText(
-          text: '00',
+          text: '45',
           size: 17,
           color: Colors.grey,
         )

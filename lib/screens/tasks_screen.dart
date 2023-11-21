@@ -94,9 +94,3 @@ class _TasksScreenState extends State<TasksScreen> {
     );
   }
 }
-
-// [
-//     Task(name: 'Buy Milk', isDone: false),
-//     Task(name: 'Clean Room', isDone: false),
-//     Task(name: 'Finish this course', isDone: false),
-//   ];

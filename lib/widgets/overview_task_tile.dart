@@ -9,9 +9,11 @@ class OverviewTaskTile extends StatelessWidget {
     super.key,
     required this.task,
     required this.priorityLevel,
+    required this.priorityColor,
   });
   final String task;
   final String priorityLevel;
+  final Color priorityColor;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,7 @@ class OverviewTaskTile extends StatelessWidget {
             constraints: const BoxConstraints(minHeight: 150),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(30),
-              color: const Color(0xffd4fe8b),
+              color: priorityColor,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,6 +55,7 @@ class OverviewTaskTile extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
                       constraints: const BoxConstraints(maxWidth: 230),
