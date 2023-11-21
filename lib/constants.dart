@@ -38,3 +38,9 @@ final kOutlinedButtonStyle = ButtonStyle(
     side: const MaterialStatePropertyAll<BorderSide>(
         BorderSide(width: 1.0, color: Colors.white)),
     foregroundColor: const MaterialStatePropertyAll<Color>(Colors.white));
+
+final Border kBorder = Border.all(width: .8, color: Colors.white54);
+
+const Color kHighLevelColour = Color.fromARGB(255, 230, 88, 6);
+const Color kMediumLevelColour = Color.fromARGB(255, 205, 162, 21);
+const Color kLowLevelColour = Color(0xffd4fe8b);

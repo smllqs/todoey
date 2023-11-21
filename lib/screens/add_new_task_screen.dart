@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:todoey/constants.dart';
+import 'package:todoey/widgets/add_task_field.dart';
 import 'package:todoey/widgets/custom_text.dart';
 import 'package:todoey/widgets/outlined_circle_avatar.dart';
+import 'package:todoey/widgets/priority_widget.dart';
 
 enum PriorityLevel { low, medium, high }
 
@@ -13,92 +16,100 @@ class AddNewTaskScreen extends StatefulWidget {
 }
 
 class _AddNewTaskScreenState extends State<AddNewTaskScreen> {
-  PriorityLevel _selected = PriorityLevel.high;
+  // PriorityLevel _selected = PriorityLevel.high;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xff1b1b1b),
-      body: SafeArea(
-        child: Container(
-          color: const Color(0xff1b1b1b),
-          padding: const EdgeInsets.all(20),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                OutlinedCircleAvatar(
-                  iconData: Icons.arrow_back_ios_new_outlined,
-                  color: Colors.white54,
-                ),
-                CustomText(text: 'Add New Task', size: 18),
-                OutlinedCircleAvatar(
-                  iconData: CupertinoIcons.ellipsis,
-                  color: Colors.white54,
-                )
-              ],
+      appBar: AppBar(
+        backgroundColor: const Color(0xff1b1b1b),
+        elevation: 0,
+        title: const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            OutlinedCircleAvatar(
+              iconData: Icons.arrow_back_ios_new_outlined,
+              color: Colors.white54,
             ),
-            const SizedBox(height: 40),
-            const TextField(
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.white70, fontSize: 18),
-              cursorColor: Colors.white24,
-              decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white38),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                ),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white38),
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
-                ),
-              ),
-            ),
-            const SizedBox(height: 40),
-            const CustomText(
-              text: 'Set Priority',
-              size: 22,
-              fontWeight: FontWeight.w200,
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              children: [RadioPriority(selected: _selected)],
+            CustomText(text: 'Add New Task', size: 18),
+            OutlinedCircleAvatar(
+              iconData: CupertinoIcons.ellipsis,
+              color: Colors.white54,
             )
-          ]),
+          ],
         ),
       ),
-    );
-  }
-}
-
-class RadioPriority extends StatelessWidget {
-  const RadioPriority({
-    super.key,
-    required PriorityLevel selected,
-  }) : _selected = selected;
-
-  final PriorityLevel _selected;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Radio<PriorityLevel>(
-          value: PriorityLevel.high,
-          groupValue: _selected,
-          onChanged: (selected) {
-            // setState(() {
-            //   _selected = selected!;
-            // });
-          },
+      body: SafeArea(
+        child: Container(
+          height: double.maxFinite,
+          color: const Color(0xff1b1b1b),
+          padding: const EdgeInsets.only(
+              // bottom: MediaQuery.of(context).viewInsets.bottom,
+              top: 20,
+              left: 20,
+              right: 20),
+          child: const SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              CustomText(
+                text: 'Select Priority',
+                size: 40,
+                fontWeight: FontWeight.w200,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: PriorityWidget(
+                      level: 1,
+                      levelString: 'High',
+                      color: kHighLevelColour,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Expanded(
+                    child: PriorityWidget(
+                      level: 2,
+                      levelString: 'Medium',
+                      color: kMediumLevelColour,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Expanded(
+                    child: PriorityWidget(
+                      level: 3,
+                      levelString: 'Low',
+                      color: kLowLevelColour,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              CustomText(
+                text: 'Enter Task',
+                size: 40,
+                fontWeight: FontWeight.w200,
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              AddTaskField(),
+              SizedBox(
+                height: 10,
+              )
+            ]),
+          ),
         ),
-        const CustomText(text: 'High', size: 15),
-      ],
+      ),
     );
   }
 }
